@@ -45,6 +45,11 @@ function dynamicdropdown(listindex)
         case "charpy" :
             document.getElementById("material_type").innerHTML = null;
             document.getElementById("material_type").options[0]=new Option("Steel 4140","steel_4140");
+            document.getElementById("material_type").options[1]=new Option("Titanium","titanium");
+            document.getElementById("material_type").options[2]=new Option("Stainless 316L","stainless_316l");
+            document.getElementById("material_type").options[3]=new Option("Steel 1045","steel_1045");
+            document.getElementById("material_type").options[4]=new Option("Brass 360","brass_360"); 
+            document.getElementById("material_type").options[5]=new Option("Aluminum 6061","aluminum_6061");
             break;
         }
 
