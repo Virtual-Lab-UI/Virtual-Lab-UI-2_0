@@ -63,13 +63,14 @@ function changeVideo(){
     if(testType.value == '' | materialType.value == ''){
         videoPath = 'standby.mp4'
     }else{
-        videoPath = `videos/${testType.value}/${materialType.value}.mp4`;
+        videoPath = `videos/${testType.value}/${testType.value}_${materialType.value}.mp4`;
     }
+    console.log(`Searching for video: ${videoPath}`);
 
     var rawDataButton = document.getElementById("raw_data");
     if(testType.value == 'tensile'){
         rawDataButton.disabled = false;
-        rawDataPath = `raw_data/${testType.value}/${materialType.value}.xlsx`;
+        rawDataPath = `raw_data/${testType.value}/${testType.value}_${materialType.value}.xlsx`;
     }else{
         rawDataButton.disabled = true;
     }
