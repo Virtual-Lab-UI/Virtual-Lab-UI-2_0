@@ -13,11 +13,22 @@ document.getElementById('video_canvas').onmousemove = function(e) {
     var x = e.clientX - rect.left; //x position within the element.
     var y = e.clientY - rect.top;  //y position within the element.
 
-    zoomDisplaceX = scaleFac*(x - (this.zoomCanvas.clientWidth)/4);
-    zoomDisplaceY = scaleFac*(y/2 - (this.zoomCanvas.clientHeight)/8);
+    zoomDisplaceX = scaleFac*(x - (this.zoomCanvas.clientWidth)/8);
+    zoomDisplaceY = scaleFac*(y - (this.zoomCanvas.clientHeight)/4)/2;
 
-    console.log("L: " + x + "; T: " + y + ";" + "X: " + zoomDisplaceX + "; Y: " + zoomDisplaceY + ";");
+    //console.log("Lef: " + x + "; Top: " + y + ";" + "X: " + zoomDisplaceX + "; Y: " + zoomDisplaceY + ";");
     
+    if(zoomDisplaceX < 0){
+        zoomDisplaceX = 0;
+    }else if(zoomDisplaceX > this.videoCanvas.clientWidth * 3.8){
+        zoomDisplaceX = this.videoCanvas.clientWidth * 3.8;
+    }
+
+    if(zoomDisplaceY < 0){
+        zoomDisplaceY = 0;
+    }else if(zoomDisplaceY > this.videoCanvas.clientHeight * 1.48){
+        zoomDisplaceY = this.videoCanvas.clientHeight * 1.48;
+    }
 }
 
 let processor = {
