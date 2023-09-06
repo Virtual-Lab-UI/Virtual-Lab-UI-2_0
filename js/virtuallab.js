@@ -20,6 +20,11 @@ function dynamicdropdown(listindex)
             document.getElementById("material_type").options[3]=new Option("PLA","pla");
             document.getElementById("material_type").options[4]=new Option("Stainless Steel 316L","stainless_steel_316l");
             document.getElementById("material_type").options[5]=new Option("Steel 1084","steel_1084");
+            document.getElementById("material_type").options[6]=new Option("Garolite","garolite");
+            document.getElementById("material_type").options[7]=new Option("Acrylic","acrylic");
+            document.getElementById("material_type").options[8]=new Option("ABS","abs");
+            document.getElementById("material_type").options[9]=new Option("Polycarbonate","polycarbonate");
+            document.getElementById("material_type").options[10]=new Option("Birch Plywood","birch_plywood");
             break;
         case "fatigue" :
             document.getElementById("material_type").innerHTML = null;
