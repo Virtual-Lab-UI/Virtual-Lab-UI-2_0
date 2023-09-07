@@ -34,9 +34,8 @@ function dynamicdropdown(listindex)
         case "rockwell_hardness" :
             document.getElementById("material_type").innerHTML = null;
             document.getElementById("material_type").options[0]=new Option("Brass 360","brass_360");
-            document.getElementById("material_type").options[0]=new Option("Brass 360 [Entire Process]","brass_360_entire_process");
             document.getElementById("material_type").options[1]=new Option("Aluminum 6061","aluminum_6061");
-            document.getElementById("material_type").options[0]=new Option("Carbon Fiber","carbon_fiber");
+            document.getElementById("material_type").options[2]=new Option("Carbon Fiber","carbon_fiber");
             break;
         case "vickers_hardness" :
             document.getElementById("material_type").innerHTML = null;
@@ -59,6 +58,11 @@ function dynamicdropdown(listindex)
 
     changeVideo();
     return true;
+}
+
+function playVideo(){
+    var video = document.getElementById('video_canvas');
+    video.play(); 
 }
 
 function changeVideo(){
