@@ -18,7 +18,7 @@ function dynamicdropdown(listindex)
             document.getElementById("material_type").options[1]=new Option("Brass 360","brass_360");
             document.getElementById("material_type").options[2]=new Option("Low Carbon Steel","low_carbon_steel");
             document.getElementById("material_type").options[3]=new Option("PLA","pla");
-            document.getElementById("material_type").options[4]=new Option("Stainless Steel 316L","stainless_steel_316l");
+            document.getElementById("material_type").options[4]=new Option("Stainless Steel 316L","stainless_316l");
             document.getElementById("material_type").options[5]=new Option("Steel 1084","steel_1084");
             document.getElementById("material_type").options[6]=new Option("Garolite","garolite");
             document.getElementById("material_type").options[7]=new Option("Acrylic","acrylic");
@@ -28,11 +28,12 @@ function dynamicdropdown(listindex)
             break;
         case "fatigue" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("Steel 316L","steel_316l");
+            document.getElementById("material_type").options[0]=new Option("Stainless Steel 316L","stainless_316l");
             break;
         case "rockwell_hardness" :
             document.getElementById("material_type").innerHTML = null;
             document.getElementById("material_type").options[0]=new Option("Brass 360","brass_360");
+            document.getElementById("material_type").options[1]=new Option("Aluminum 6061","aluminum_6061");
             break;
         case "vickers_hardness" :
             document.getElementById("material_type").innerHTML = null;
