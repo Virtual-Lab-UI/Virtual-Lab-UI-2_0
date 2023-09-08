@@ -72,6 +72,8 @@ function changeVideo(){
 
     video.setAttribute('controls', "true");
 
+    console.log("AAAAAAAAAAAAAAAAAAAAA");
+
     var testType = document.querySelector('#test_type');
     var materialType = document.querySelector('#material_type');
 
