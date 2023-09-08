@@ -83,7 +83,7 @@ input[type=submit] {
 
 button{
     background: silver;
-    box-shadow: inset -2.5px -2.5px #0a0a0a, inset 2.5px 2.5px #fff, inset -5px -5px grey, inset 5px 5px #dfdfdf
+    box-shadow: inset -2px -2px #0a0a0a, inset 2px 2px #fff, inset -4px -4px grey, inset 4px 4px #dfdfdf
 }
 
 .vertical-bar {
@@ -94,7 +94,7 @@ button{
 button:not(:disabled):active,
 input[type=reset]:not(:disabled):active,
 input[type=submit]:not(:disabled):active {
-    box-shadow: inset -2.5px -2.5px #fff, inset 2.5px 2.5px #0a0a0a, inset -5px -5px #dfdfdf, inset 5px 5px grey;
+    box-shadow: inset -2px -2px #fff, inset 2px 2px #0a0a0a, inset -4px -4px #dfdfdf, inset 4px 4px grey;
     text-shadow: 1px 1px #222
 }
 
@@ -107,7 +107,7 @@ input[type=submit]:not(:disabled):active {
     }
 
     button:not(:disabled):hover {
-        box-shadow: inset -2.5px -2.5px #fff, inset 2.5px 2.5px #0a0a0a, inset -5px -5px #dfdfdf, inset 5px 5px grey
+        box-shadow: inset -2px -2px #fff, inset 2px 2px #0a0a0a, inset -4px -4px #dfdfdf, inset 4px 4px grey
     }
 
 }
@@ -139,12 +139,12 @@ input[type=submit]:disabled {
     text-shadow: 1px 1px 0 #fff;
     color: #a7a7a7;
     background: rgb(212, 212, 212);
-    box-shadow: inset -2.5px -2.5px #868686, inset 2.5px 2.5px #fff, inset -5px -5px rgb(196, 196, 196), inset 5px 5px #f0f0f0
+    box-shadow: inset -2px -2px #868686, inset 2px 2px #fff, inset -4px -4px rgb(196, 196, 196), inset 4px 4px #f0f0f0
 }
 
 .window {
     background: silver;
-    box-shadow: inset -2.5px -2.5px #0a0a0a, inset 2.5px 2.5px #dfdfdf, inset -5px -5px grey, inset 5px 5px #fff;
+    box-shadow: inset -2px -2px #0a0a0a, inset 2px 2px #dfdfdf, inset -4px -4px grey, inset 4px 4px #fff;
     padding: 7px
 }
 
@@ -174,8 +174,9 @@ input[type=submit]:disabled {
 
 .title-bar-controls button {
     display: block;
-    min-height: 14px;
-    min-width: 16px;
+    min-height: 24px;
+    height:100%;
+    min-width: 24px;
     padding: 0
 }
 
@@ -207,7 +208,7 @@ input[type=submit]:disabled {
 
 .title-bar-controls button[aria-label=Help] {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 1h2v2H0zM1 0h4v1H1zM4 1h2v2H4zM3 3h2v1H3zM2 4h2v2H2zM2 7h2v2H2z'/%3E%3C/svg%3E");
-    background-position: top 2px left 5px;
+    background-position: top 7px left 8px;
     background-repeat: no-repeat
 }
 
@@ -232,7 +233,7 @@ input[type=submit]:disabled {
 }
 
 .window-body {
-    margin: 9px
+    margin: 4px
 }
 
 fieldset {
@@ -758,7 +759,7 @@ summary:focus {
 menu[role=tablist] {
     display: flex;
     list-style-type: none;
-    margin: 0 0 -2px;
+    margin: 0 0 -4px;
     padding-left: 3px;
     position: relative;
     text-indent: 0
@@ -767,7 +768,7 @@ menu[role=tablist] {
 menu[role=tablist]>li {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    box-shadow: inset -1px 0 #0a0a0a, inset 1px 1px #dfdfdf, inset -2px 0 grey, inset 2px 2px #fff;
+    box-shadow: inset -2px 0 #0a0a0a, inset 2px 2px #dfdfdf, inset -4px 0 grey, inset 4px 4px #fff;
     z-index: 1
 }
 
@@ -871,9 +872,9 @@ table>tbody>tr>* {
 }
 
 .larger-button{
-    width:49%;
-    height:20%;
-    font-size: 16px
+    width:100%;
+    height:100%;
+    font-size: 1rem
 }
 .larger-select{
     height:100%;
@@ -890,5 +891,18 @@ table>tbody>tr>* {
     
 .topsplit { grid-area: 1 / 1 / 2 / 2; }
 .bottomsplit { grid-area: 2 / 1 / 3 / 2; }
+
+.withinWindow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+}
+
+.withinWindowS1 { grid-area: 1 / 1 / 2 / 3; }
+.withinWindowS2 { grid-area: 2 / 1 / 3 / 3; }
+.withinWindowB1 { grid-area: 3 / 1 / 5 / 2; }
+.withinWindowB2 { grid-area: 3 / 2 / 5 / 3; }
 
 /*# sourceMappingURL=98.css.map */

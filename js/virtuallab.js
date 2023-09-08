@@ -100,13 +100,24 @@ function changeVideo(){
 
     if(testType.value == '' | materialType.value == ''){
         videoPath = 'standby.mp4';
+        
         zoomCanvasContext.fillStyle = "#C0C0C0";
         zoomCanvasContextInitial.fillRect(0,0,zoomBox.clientWidth*1.1,zoomBox.clientHeight*1.1);
         zoomCanvasContext.drawImage(labLogo,0,0,zoomBox.clientWidth,zoomBox.clientWidth);
+        
         //console.log(`W:${zoomCanvas.clientWidth} H:${zoomCanvas.clientHeight}`);
-        console.log(`W:${zoomBox.clientWidth} H:${zoomBox.clientHeight}`);
+        //console.log(`W:${zoomBox.clientWidth} H:${zoomBox.clientHeight}`);
+
+        document.getElementById("zoom_tab").setAttribute('aria-selected','false');
+        document.getElementById("icon_tab").setAttribute('aria-selected','true');
     }else{
         videoPath = `videos/${testType.value}/${testType.value}_${materialType.value}.mp4`;
+
+        zoomCanvasContext.fillStyle = "#C0C0C0";
+        zoomCanvasContextInitial.fillRect(0,0,zoomBox.clientWidth*1.1,zoomBox.clientHeight*1.1);
+
+        document.getElementById("zoom_tab").setAttribute('aria-selected','true');
+        document.getElementById("icon_tab").setAttribute('aria-selected','false');
     }
     console.log(`Searching for video: ${videoPath}`);
 
