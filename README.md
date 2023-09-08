@@ -1,5 +1,3 @@
-# pknessness.github.io
+# Virtual Lab UI 2.0
 
-## I AM THE LEGEND OF THE BIG
-### BIG
-## POTATO IN THE SKY
+This is the UCSD Virtual Stem Lab Environment. It has a number of experiments viewable by students at http://ucsdstemlab-deve.ucsd.edu/
