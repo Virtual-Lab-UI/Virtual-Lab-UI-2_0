@@ -4,6 +4,22 @@
 // ctx.fillStyle = "#FF0000";
 // ctx.fillRect(0, 0, 50000, 50000);
 
+var zoomCanvasInitial = document.getElementById("zoom_canvas");
+var zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
+
+const labLogo = new Image(); // Create new img element
+labLogo.addEventListener(
+    "load",
+    () => {
+        // execute drawImage statements here
+        zoomCanvasContextInitial.fillStyle = "#C0C0C0";
+        zoomCanvasContextInitial.fillRect(0,0,zoomCanvasInitial.clientWidth*1.1,zoomCanvasInitial.clientHeight*1.1);
+        zoomCanvasContextInitial.drawImage(labLogo,0,0,zoomCanvasInitial.clientWidth,zoomCanvasInitial.clientWidth);
+    },
+    false,
+);
+labLogo.src = "VirtualLabLogoUpscaled.png"; // Set source path
+
 function dynamicdropdown(listindex)
 {
 
@@ -72,7 +88,9 @@ function changeVideo(){
 
     video.setAttribute('controls', "true");
 
-    console.log("AAAAAAAAAAAAAAAAAAAAA");
+    var zoomBox = document.getElementById("zoom_box");
+    var zoomCanvas = document.getElementById("zoom_canvas");
+    var zoomCanvasContext = zoomCanvas.getContext("2d");
 
     var testType = document.querySelector('#test_type');
     var materialType = document.querySelector('#material_type');
@@ -81,7 +99,12 @@ function changeVideo(){
     var rawDataPath;
 
     if(testType.value == '' | materialType.value == ''){
-        videoPath = 'standby.mp4'
+        videoPath = 'standby.mp4';
+        zoomCanvasContext.fillStyle = "#C0C0C0";
+        zoomCanvasContextInitial.fillRect(0,0,zoomBox.clientWidth*1.1,zoomBox.clientHeight*1.1);
+        zoomCanvasContext.drawImage(labLogo,0,0,zoomBox.clientWidth,zoomBox.clientWidth);
+        //console.log(`W:${zoomCanvas.clientWidth} H:${zoomCanvas.clientHeight}`);
+        console.log(`W:${zoomBox.clientWidth} H:${zoomBox.clientHeight}`);
     }else{
         videoPath = `videos/${testType.value}/${testType.value}_${materialType.value}.mp4`;
     }

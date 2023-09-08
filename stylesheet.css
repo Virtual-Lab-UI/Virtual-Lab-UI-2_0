@@ -144,8 +144,8 @@ input[type=submit]:disabled {
 
 .window {
     background: silver;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
-    padding: 3px
+    box-shadow: inset -2.5px -2.5px #0a0a0a, inset 2.5px 2.5px #dfdfdf, inset -5px -5px grey, inset 5px 5px #fff;
+    padding: 7px
 }
 
 .title-bar {
@@ -232,7 +232,7 @@ input[type=submit]:disabled {
 }
 
 .window-body {
-    margin: 8px
+    margin: 9px
 }
 
 fieldset {
@@ -873,7 +873,7 @@ table>tbody>tr>* {
 .larger-button{
     width:49%;
     height:20%;
-    font-size: 20px
+    font-size: 16px
 }
 .larger-select{
     height:100%;
