@@ -140,3 +140,13 @@ First zoom tests, have a zoom frame on the bottom left of the window, and have m
 ## September 6 [10:30AM - 6:00PM]
 
 In the morning, meeting with Maziar, John, and Andrew. Got the url from Guad at 10, so was able to put everything on the website, get everything up and ready and good. Got git set up on the dev environment, and everything is solid and set up on the new github repo.
+
+## September 7 [3:00PM - 5:00PM] [6:00PM - 2:30AM]
+
+Added new rockwell videos, and wierd bug where updates didnt occur, but .. wierd things, fixed it, as in removing the most newly added line and adding it again but through a copy paste of another line. Wierd. Also redid logo, and added it to the home page.
+
+Fixed up the aesthetic massively, using a lot more of the features of 98.css, and adding tabs for the extra features of the spreadsheet, which I will have to code in more fully later.
+
+## September 12 [8:00PM - 9:00PM] [10:00PM - 10:30PM]
+
+Doing more formatting things with css, wierd formatting things with the zoom window need to fix. Next on the list is getting the tabs to work, and then getting the interactive element to work with vickers.
