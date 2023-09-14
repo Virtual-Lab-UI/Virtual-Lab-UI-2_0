@@ -49,9 +49,13 @@ function dynamicdropdown(listindex)
             break;
         case "rockwell_hardness" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("Brass 360","brass_360");
-            document.getElementById("material_type").options[1]=new Option("Aluminum 6061","aluminum_6061");
+            document.getElementById("material_type").options[0]=new Option("Aluminum 6061","aluminum_6061");
+            document.getElementById("material_type").options[1]=new Option("Brass 360","brass_360");
             document.getElementById("material_type").options[2]=new Option("Carbon Fiber","carbon_fiber");
+            document.getElementById("material_type").options[3]=new Option("Copper","copper");
+            document.getElementById("material_type").options[4]=new Option("Steel 1018","steel_1018");
+            document.getElementById("material_type").options[5]=new Option("Steel 1084","steel_1084");
+            document.getElementById("material_type").options[6]=new Option("Steel 4140","steel_4140");
             break;
         case "vickers_hardness" :
             document.getElementById("material_type").innerHTML = null;
@@ -63,12 +67,13 @@ function dynamicdropdown(listindex)
             break;
         case "charpy" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("Steel 4140","steel_4140");
-            document.getElementById("material_type").options[1]=new Option("Titanium","titanium");
-            document.getElementById("material_type").options[2]=new Option("Stainless 316L","stainless_316l");
-            document.getElementById("material_type").options[3]=new Option("Steel 1045","steel_1045");
-            document.getElementById("material_type").options[4]=new Option("Brass 360","brass_360"); 
-            document.getElementById("material_type").options[5]=new Option("Aluminum 6061","aluminum_6061");
+            document.getElementById("material_type").options[0]=new Option("Aluminum 6061","aluminum_6061");
+            document.getElementById("material_type").options[1]=new Option("Brass 360","brass_360");
+            document.getElementById("material_type").options[2]=new Option("Titanium","titanium");
+            document.getElementById("material_type").options[3]=new Option("Stainless 316L","stainless_316l");
+            document.getElementById("material_type").options[4]=new Option("Steel 1045","steel_1045");
+            document.getElementById("material_type").options[5]=new Option("Steel 4140","steel_4140");
+            
             break;
         }
 
