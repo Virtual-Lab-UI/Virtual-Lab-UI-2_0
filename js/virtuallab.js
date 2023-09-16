@@ -4,12 +4,14 @@
 // ctx.fillStyle = "#FF0000";
 // ctx.fillRect(0, 0, 50000, 50000);
 
-sessionStorage.setItem("storage_testType", "");
-sessionStorage.setItem("storage_materialType", "");
+// sessionStorage.setItem("storage_testType", "");
+// sessionStorage.setItem("storage_materialType", "");
 //sessionStorage.setItem("serverSideReload", "false");
 
-function dynamicdropdown(listindex)
+function dynamicdropdown()
 {
+    var testSelect = document.getElementById("test_type");
+    listindex = testSelect.options[testSelect.selectedIndex].value
 
     switch (listindex)
     {

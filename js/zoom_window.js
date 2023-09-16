@@ -21,7 +21,7 @@ labLogo.addEventListener(
 window.onresize = reloadSizes;
 
 function reloadSizes(){
-    console.log("start-" + sessionStorage.getItem("serverSideReload"));
+    //console.log("start-" + sessionStorage.getItem("s"));
     if(sessionStorage.getItem("serverSideReload") != "true"){
         //location.reload();
         sessionStorage.setItem("serverSideReload", "true");
@@ -31,7 +31,7 @@ function reloadSizes(){
         tabWindow = document.getElementById("tab_window");
         tabDiv = document.getElementById("tab_div");
 
-        
+
         console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
         tabWindow.style.height = tabDiv.clientHeight - 22;
         console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
@@ -42,6 +42,18 @@ function reloadSizes(){
 
         zoomBox.style.height = zoomBox.clientHeight - 8;
 
+        if(sessionStorage.getItem("storage_testType") != null){
+            const $select = document.querySelector('#test_type');
+            $select.value = sessionStorage.getItem("storage_testType");
+            dynamicdropdown();
+        }
+        if(sessionStorage.getItem("storage_materialType") != null){
+            const $select = document.querySelector('#material_type');
+            $select.value = sessionStorage.getItem("storage_materialType");
+            
+        }
+        changeVideo();
+        
 
         zoomCanvas.width = zoomBox.clientWidth;
         zoomCanvas.height = zoomBox.clientHeight;
@@ -51,7 +63,7 @@ function reloadSizes(){
         sessionStorage.setItem("serverSideReload", "false");
     }
     //sessionStorage.setItem("serverSideReload", "false");
-    console.log("nd-" + sessionStorage.getItem("serverSideReload"));
+    //console.log("nd-" + sessionStorage.getItem("serverSideReload"));
 }
 
 function reload(){
