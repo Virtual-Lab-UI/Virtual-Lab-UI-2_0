@@ -6,6 +6,7 @@
 
 sessionStorage.setItem("storage_testType", "");
 sessionStorage.setItem("storage_materialType", "");
+//sessionStorage.setItem("serverSideReload", "false");
 
 function dynamicdropdown(listindex)
 {

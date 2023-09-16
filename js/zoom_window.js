@@ -21,33 +21,44 @@ labLogo.addEventListener(
 window.onresize = reloadSizes;
 
 function reloadSizes(){
-    //location.reload();
-    tabWindow = document.getElementById("tab_window");
-    tabDiv = document.getElementById("tab_div");
+    console.log("start-" + sessionStorage.getItem("serverSideReload"));
+    if(sessionStorage.getItem("serverSideReload") != "true"){
+        //location.reload();
+        sessionStorage.setItem("serverSideReload", "true");
+        reload();
+        //sessionStorage.setItem("serverSideReload", "false");
+    }else{
+        tabWindow = document.getElementById("tab_window");
+        tabDiv = document.getElementById("tab_div");
 
-    console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
-    tabWindow.style.height = tabDiv.clientHeight - 22;
-    console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
-    
-    zoomCanvas = document.getElementById("zoom_canvas");
-    zoomBox = document.getElementById("zoom_box");
+        
+        console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
+        tabWindow.style.height = tabDiv.clientHeight - 22;
+        console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
+        
 
-    zoomBox.style.height = zoomBox.clientHeight - 8;
+        zoomCanvas = document.getElementById("zoom_canvas");
+        zoomBox = document.getElementById("zoom_box");
 
-    // const element = document.querySelector('.div2');
-    // element.style.grid_area = '9 / 1 / 21 / 5';
+        zoomBox.style.height = zoomBox.clientHeight - 8;
 
-    //document.getElementById("tab-div").setAttribute('class','div2')
 
-    zoomCanvas.width = zoomBox.clientWidth;
-    zoomCanvas.height = zoomBox.clientHeight;
+        zoomCanvas.width = zoomBox.clientWidth;
+        zoomCanvas.height = zoomBox.clientHeight;
 
-    labLogo.src = "VirtualLabLogoUpscaled.png"; // Set source path
-    //alert("asdass")
+        labLogo.src = "VirtualLabLogoUpscaled.png"; // Set source path
+
+        sessionStorage.setItem("serverSideReload", "false");
+    }
+    //sessionStorage.setItem("serverSideReload", "false");
+    console.log("nd-" + sessionStorage.getItem("serverSideReload"));
 }
 
 function reload(){
-    
+    if(sessionStorage.getItem("serverSideReload") == "true"){
+        console.log("relaod");
+        location.reload();
+    }
 }
 
 document.getElementById('video_canvas').onmousemove = function(e) {
