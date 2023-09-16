@@ -861,8 +861,8 @@ table>tbody>tr>* {
 .div3 { grid-area: 1 / 5 / 21 / 21; border: 1px dotted rgb(12, 16, 255); padding: -1px}
 
 
-.div1 { grid-area: 1 / 1 / 9 / 5; border: 0px;}
-.div2 { grid-area: 9 / 1 / 21 / 5; border: 0px;}
+.div1 { grid-area: 1 / 1 / 8 / 5; border: 0px;}
+.div2 { grid-area: 8 / 1 / 21 / 5; border: 0px;}
 .div3 { grid-area: 1 / 5 / 21 / 21; border: 0px;}
 
 .video-frame {

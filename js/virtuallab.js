@@ -4,21 +4,8 @@
 // ctx.fillStyle = "#FF0000";
 // ctx.fillRect(0, 0, 50000, 50000);
 
-var zoomCanvasInitial = document.getElementById("zoom_canvas");
-var zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
-
-const labLogo = new Image(); // Create new img element
-labLogo.addEventListener(
-    "load",
-    () => {
-        // execute drawImage statements here
-        zoomCanvasContextInitial.fillStyle = "#C0C0C0";
-        zoomCanvasContextInitial.fillRect(0,0,zoomCanvasInitial.clientWidth*1.1,zoomCanvasInitial.clientHeight*1.1);
-        zoomCanvasContextInitial.drawImage(labLogo,0,0,zoomCanvasInitial.clientWidth,zoomCanvasInitial.clientWidth);
-    },
-    false,
-);
-labLogo.src = "VirtualLabLogoUpscaled.png"; // Set source path
+sessionStorage.setItem("storage_testType", "");
+sessionStorage.setItem("storage_materialType", "");
 
 function dynamicdropdown(listindex)
 {
@@ -27,7 +14,7 @@ function dynamicdropdown(listindex)
     {
         case "" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("Select Test Type To Show Available Materials","");
+            document.getElementById("material_type").options[0]=new Option("Select Material","");
             break;
         case "tensile" :
             document.getElementById("material_type").innerHTML = null;
@@ -102,6 +89,9 @@ function changeVideo(){
 
     var videoPath;
     var rawDataPath;
+
+    sessionStorage.setItem("storage_testType", testType.value);
+    sessionStorage.setItem("storage_materialType", materialType.value);
 
     if(testType.value == '' | materialType.value == ''){
         videoPath = 'standby.mp4';

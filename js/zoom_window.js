@@ -3,6 +3,53 @@ var zoomDisplaceY;
 
 const scaleFac = 3;
 
+var zoomCanvasInitial = document.getElementById("zoom_canvas");
+var zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
+
+const labLogo = new Image(); // Create new img element
+labLogo.addEventListener(
+    "load",
+    () => {
+        // execute drawImage statements here
+        zoomCanvasContextInitial.fillStyle = "#C0C0C0";
+        zoomCanvasContextInitial.fillRect(0,0,zoomCanvasInitial.clientWidth*1.1,zoomCanvasInitial.clientHeight*1.1);
+        zoomCanvasContextInitial.drawImage(labLogo,0,0,zoomCanvasInitial.clientWidth,zoomCanvasInitial.clientWidth);
+    },
+    false,
+);
+
+window.onresize = reloadSizes;
+
+function reloadSizes(){
+    //location.reload();
+    tabWindow = document.getElementById("tab_window");
+    tabDiv = document.getElementById("tab_div");
+
+    console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
+    tabWindow.style.height = tabDiv.clientHeight - 22;
+    console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
+    
+    zoomCanvas = document.getElementById("zoom_canvas");
+    zoomBox = document.getElementById("zoom_box");
+
+    zoomBox.style.height = zoomBox.clientHeight - 8;
+
+    // const element = document.querySelector('.div2');
+    // element.style.grid_area = '9 / 1 / 21 / 5';
+
+    //document.getElementById("tab-div").setAttribute('class','div2')
+
+    zoomCanvas.width = zoomBox.clientWidth;
+    zoomCanvas.height = zoomBox.clientHeight;
+
+    labLogo.src = "VirtualLabLogoUpscaled.png"; // Set source path
+    //alert("asdass")
+}
+
+function reload(){
+    
+}
+
 document.getElementById('video_canvas').onmousemove = function(e) {
     // e = Mouse click event.
     this.zoomCanvas = document.getElementById("zoom_canvas");
@@ -48,8 +95,7 @@ let processor = {
         zoomBox = document.getElementById("zoom_box");
         this.zoomCanvas = document.getElementById("zoom_canvas");
 
-        this.zoomCanvas.width = zoomBox.clientWidth;
-        this.zoomCanvas.height = zoomBox.clientHeight;
+        reloadSizes();
 
         this.zoomCanvasContext = this.zoomCanvas.getContext("2d");
         let self = this;

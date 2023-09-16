@@ -150,3 +150,9 @@ Fixed up the aesthetic massively, using a lot more of the features of 98.css, an
 ## September 12 [8:00PM - 9:00PM] [10:00PM - 10:30PM]
 
 Doing more formatting things with css, wierd formatting things with the zoom window need to fix. Next on the list is getting the tabs to work, and then getting the interactive element to work with vickers.
+
+## September 15 [11:00PM - 2:00PM]
+
+All my formatting things with the zoom window size got reverted, so did those again.
+
+GOING TO TRY AND IMPLEMENT SESSION STORAGE. Going to use it to keep track of what video you were on when you reload.
