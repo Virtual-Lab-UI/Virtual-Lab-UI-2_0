@@ -914,3 +914,8 @@ table>tbody>tr>* {
 .withinWindowB2 { grid-area: 3 / 2 / 5 / 3; }
 
 /*# sourceMappingURL=98.css.map */
+.credits {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+} 

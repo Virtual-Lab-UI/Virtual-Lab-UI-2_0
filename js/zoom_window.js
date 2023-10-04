@@ -151,6 +151,11 @@ let processor = {
         //       frame.data[i * 4 + 3] = 0;
         //   }
         //   this.zoomCanvasContext.putImageData(frame, 0, 0);
+
+        if(testType.value = "vickers_hardness" & (this.video.currentTime > vickersTimestamps[materialType.value])){
+            changeVideoToCanvas();
+        }
+
         return;
     }
 };

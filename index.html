@@ -26,7 +26,7 @@
           <div class="window-body">
             <div class="withinWindow">
               <div class="withinWindowS1">
-                <select id="test_type" class="larger-select" name="test_type" onchange="javascript: dynamicdropdown()">
+                <select id="test_type" class="larger-select" name="test_type" onchange="dynamicdropdown()">
                   <option value="">Select Test</option>
                   <option value="tensile">Tensile</option>
                   <option value="fatigue">Fatigue</option>
@@ -56,6 +56,12 @@
             </div>
           </div>
         </div>
+        <button onclick="changeVideoToCanvas()" >
+          changeVideoToCanvas
+        </button>
+        <button onclick="changeCanvasToVideo()" >
+          changeCanvasToVideo
+        </button>
       </div>
       <div class="div2" id="tab_div">
         <menu role="tablist">
@@ -79,5 +85,9 @@
     </div>
     <script src = "js/virtuallab.js"></script>
     <script src = "js/zoom_window.js"></script>
+    <script src = "js/vickers_interactive.js"></script>
+    <div class="credits">
+      Created by Anshal Jain [https://github.com/pknessness] and Giovanni Bernal Ramirez [https://github.com/GioByte10]
+    </div>
   </body>
 </html>
