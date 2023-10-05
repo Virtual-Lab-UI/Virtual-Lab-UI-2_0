@@ -918,4 +918,6 @@ table>tbody>tr>* {
     position: fixed;
     bottom: 0;
     left: 0;
+    background: #c0c0c0;
+    z-index: 5;
 } 

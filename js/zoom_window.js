@@ -6,6 +6,7 @@ const scaleFac = 3;
 var zoomCanvasInitial = document.getElementById("zoom_canvas");
 var zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
 
+
 const labLogo = new Image(); // Create new img element
 labLogo.addEventListener(
     "load",
@@ -77,7 +78,7 @@ document.getElementById('video_canvas').onmousemove = function(e) {
     // e = Mouse click event.
     this.zoomCanvas = document.getElementById("zoom_canvas");
     this.videoCanvas = document.getElementById("video_canvas");
-    scale = this.videoCanvas.clientWidth/this.zoomCanvas.clientWidth;
+    //scale = this.videoCanvas.clientWidth/this.zoomCanvas.clientWidth;
 
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left; //x position within the element.
@@ -139,7 +140,7 @@ let processor = {
 
         }else{
             this.zoomCanvasContext.drawImage(this.video, -zoomDisplaceX,-zoomDisplaceY, (scaleFac * this.video.clientWidth), (scaleFac * this.video.clientHeight));
-        }
+        }   
         //   let frame = this.zoomCanvasContext.getImageData(0, 0, this.width, this.height);
         //       let l = frame.data.length / 4;
     
@@ -152,8 +153,17 @@ let processor = {
         //   }
         //   this.zoomCanvasContext.putImageData(frame, 0, 0);
 
-        if(testType.value = "vickers_hardness" & (this.video.currentTime > vickersTimestamps[materialType.value])){
+        console.log(`ttvalue ${testType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
+
+        if(testType.value == "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && currentState == "video"){
+            //alert("time has reached");
+            this.video.pause();
             changeVideoToCanvas();
+            setup();
+            currentState = "interactive"
+        }
+        if(currentState == "interactive"){
+            draw();
         }
 
         return;

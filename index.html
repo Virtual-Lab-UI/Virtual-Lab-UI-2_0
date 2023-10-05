@@ -20,7 +20,7 @@
                 Select Experiment:
             </div>
             <div class="title-bar-controls">
-              <button aria-label="Help"></button>
+              <button aria-label="Help" onclick="alert('Select a test and material to begin')"></button>
             </div>
           </div>
           <div class="window-body">
@@ -78,14 +78,17 @@
         </div>
       </div>
       <div class="div3" id="video_div">
-        <video id="video_canvas" class="video-frame" controls="false" poster="standby.png">
+        <video id="video_canvas" class="video-frame" controls="false" poster="standby.png" hidden="true">
           <source src="standby.mp4" type="video/mp4" id="video_source">
         </video>
+        <div id="video_box_sim"  class="video-frame-sim" hidden="false">
+        </div>
       </div>
     </div>
     <script src = "js/virtuallab.js"></script>
-    <script src = "js/zoom_window.js"></script>
     <script src = "js/vickers_interactive.js"></script>
+    <script src = "js/zoom_window.js"></script>    
+    <script src = "https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
     <div class="credits">
       Created by Anshal Jain [https://github.com/pknessness] and Giovanni Bernal Ramirez [https://github.com/GioByte10]
     </div>
