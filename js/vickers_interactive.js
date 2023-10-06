@@ -77,11 +77,11 @@ function setup(){
     imageHeight = min(interactiveHeight, bg.height)
     imageWidth = imageHeight * (1280 / 720);
 
-    focusKnob = new Knob(interactiveWidth * 1.2 / 10, interactiveHeight * 2 / 10, interactiveWidth / 20,
+    focusKnob = new Knob(interactiveWidth * 1 / 10, interactiveHeight * 1.5 / 10, interactiveWidth / 20,
         -360, 360, 0, 12, 6);
-    baseKnob = new Knob(interactiveWidth * 1.2 / 10, interactiveHeight * 8 / 10, interactiveWidth / 20,
+    baseKnob = new Knob(interactiveWidth * 1 / 10, interactiveHeight * 8.5 / 10, interactiveWidth / 20,
         -2 * 360, 2 * 360, random(-1.8 * 360, 0), 12, 6)
-    measuringKnob = new Knob(interactiveWidth * 9.2 / 10, interactiveHeight * 8 / 10, interactiveWidth / 20,
+    measuringKnob = new Knob(interactiveWidth * 9 / 10, interactiveHeight * 8.5 / 10, interactiveWidth / 20,
         baseKnob.theta0, 4 * 360 + baseKnob.theta0, random(baseKnob.theta0, 1.7 * 360), 12, 6)
     lensKnob = new Knob(interactiveWidth / 2, interactiveHeight / 2, 790 / 1280 * imageWidth / 2,
     -180, -90, -180, 0, 20, 0, -1);
@@ -92,7 +92,7 @@ function setup(){
     knobs.push(lensKnob);
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
-    inputButton = new Button(interactiveWidth * 8.2 / 10, interactiveHeight * 8 / 10, 40, 40, checkVerticalFilars);
+    inputButton = new Button(interactiveWidth * 9 / 10, interactiveHeight * 6.5 / 10, 40, 40, checkVerticalFilars);
     variation = random(-1.5, 1.5);
 }
 function draw(){
@@ -115,14 +115,14 @@ function staticSetup(){
     text('Base', baseKnob.x, baseKnob.y + baseKnob.r * 1.4);
     text('Measuring', measuringKnob.x, measuringKnob.y + measuringKnob.r * 1.4);
 
-    text('Input', inputButton.x, measuringKnob.y + measuringKnob.r * 1.4);
+    text('Input', inputButton.x, inputButton.y + inputButton.w * 1.4);
 
-    if(!vertical)
-        text('Vertical input recorded', interactiveWidth * 9 / 10, interactiveHeight * 5.3 / 10);
+    if(!vertical && !done)
+        text('Vertical input recorded', interactiveWidth * 8.8 / 10, interactiveHeight * 1 / 10);
 
     textSize(30);
     if(done)
-        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 8.8 / 10, interactiveHeight * 3 / 10);
+        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 8.8 / 10, interactiveHeight * 1 / 10);
 
 }
 function lensOuterKnob(){
