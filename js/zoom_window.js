@@ -21,6 +21,24 @@ labLogo.addEventListener(
 
 window.onresize = reloadSizes;
 
+function changeToDataPanel(){
+    document.getElementById("zoom_tab").setAttribute('aria-selected','false');
+    document.getElementById("icon_tab").setAttribute('aria-selected','false');
+    document.getElementById("data_panel_tab").setAttribute('aria-selected','true');
+}
+
+function changeToIcon(){
+    document.getElementById("zoom_tab").setAttribute('aria-selected','false');
+    document.getElementById("icon_tab").setAttribute('aria-selected','true');
+    document.getElementById("data_panel_tab").setAttribute('aria-selected','false');
+}
+
+function changeToZoomFrame(){
+    document.getElementById("zoom_tab").setAttribute('aria-selected','true');
+    document.getElementById("icon_tab").setAttribute('aria-selected','false');
+    document.getElementById("data_panel_tab").setAttribute('aria-selected','false');
+}
+
 function reloadSizes(){
     //console.log("start-" + sessionStorage.getItem("s"));
     if(sessionStorage.getItem("serverSideReload") != "true"){
@@ -153,7 +171,7 @@ let processor = {
         //   }
         //   this.zoomCanvasContext.putImageData(frame, 0, 0);
 
-        console.log(`ttvalue ${testType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
+        //console.log(`ttvalue ${testType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
 
         if(testType.value == "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && currentState == "video"){
             //alert("time has reached");

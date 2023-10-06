@@ -1,24 +1,28 @@
 vickersTimestamps = {};
 
-vickersTimestamps["steel_1018"] = 58.3;
+vickersTimestamps["steel_1018"] = 190.0;
 
 currentState = "video";
 
 function changeCanvasToVideo(){
-    document.getElementById("video_div").innerHTML = '<video id="video_canvas" class="video-frame" controls="false" poster="standby.png"> \
-    <source src="standby.mp4" type="video/mp4" id="video_source"> \
-  </video>';
+//     document.getElementById("video_div").innerHTML = '<video id="video_canvas" class="video-frame" controls="false" poster="standby.png"> \
+//     <source src="standby.mp4" type="video/mp4" id="video_source"> \
+//   </video>';
     //document.getElementById("video_canvas").setAttribute('hidden','false');
-    document.getElementById("video_box_sim").setAttribute('hidden','true');
+    document.getElementById("video_canvas").style.display = 'block';
+    document.getElementById("video_box_sim").style.display = 'none';
     document.getElementById("video_canvas").play();
     console.log("hiding canvas");
 }
 function changeVideoToCanvas(){
 //     document.getElementById("video_div").innerHTML = '<div id="video_box_sim"  class="video-frame-sim"> \
 //   </div>'
-    document.getElementById("video_div").innerHTML = '';
+    //document.getElementById("video_div").innerHTML = '';
     //document.getElementById("video_canvas").setAttribute('hidden','true');
-    document.getElementById("video_box_sim").setAttribute('hidden','false');
+    interactiveWidth = document.getElementById("video_canvas").clientWidth;
+    interactiveHeight = document.getElementById("video_canvas").clientHeight;
+    document.getElementById("video_canvas").style.display = 'none';
+    document.getElementById("video_box_sim").style.display = 'block';
     console.log("hiding video")
 }
 
@@ -27,7 +31,7 @@ function changeVideoToCanvas(){
 //     canvas id="video_canvas_sim" class="video-frame-sim"></canvas> \
 //   </div>'
 // }
-
+changeCanvasToVideo();
 
 //GIO CODE
 let fps = 60;
@@ -51,11 +55,17 @@ let filarBounds = [[-250, -227, 0, 25], [-185, -150, 55, 96]];
 let imageHeight;
 let imageWidth;
 
+let interactiveWidth = 0;
+let interactiveHeight = 0;
+
+let parent = document.getElementById("video_canvas");
 function preload(){
     bg = loadImage('images/sample.png');
 }
 function setup(){
-    let vickersInteractive = createCanvas(windowWidth, windowHeight);
+    console.log(`wid${parent.offsetWidth} hig${parent.offsetHeight} wid${interactiveWidth} hig${interactiveHeight}`);
+
+    let vickersInteractive = createCanvas(interactiveWidth, interactiveHeight);
     vickersInteractive.parent('video_box_sim');
     frameRate(fps);
     textAlign(CENTER);
@@ -64,16 +74,16 @@ function setup(){
     angleMode(DEGREES);
     fill(192);
 
-    imageHeight = min(windowHeight, bg.height)
+    imageHeight = min(interactiveHeight, bg.height)
     imageWidth = imageHeight * (1280 / 720);
 
-    focusKnob = new Knob(windowWidth * 1.2 / 10, windowHeight * 2 / 10, windowWidth / 20,
+    focusKnob = new Knob(interactiveWidth * 1.2 / 10, interactiveHeight * 2 / 10, interactiveWidth / 20,
         -360, 360, 0, 12, 6);
-    baseKnob = new Knob(windowWidth * 1.2 / 10, windowHeight * 8 / 10, windowWidth / 20,
+    baseKnob = new Knob(interactiveWidth * 1.2 / 10, interactiveHeight * 8 / 10, interactiveWidth / 20,
         -2 * 360, 2 * 360, random(-1.8 * 360, 0), 12, 6)
-    measuringKnob = new Knob(windowWidth * 9.2 / 10, windowHeight * 8 / 10, windowWidth / 20,
+    measuringKnob = new Knob(interactiveWidth * 9.2 / 10, interactiveHeight * 8 / 10, interactiveWidth / 20,
         baseKnob.theta0, 4 * 360 + baseKnob.theta0, random(baseKnob.theta0, 1.7 * 360), 12, 6)
-    lensKnob = new Knob(windowWidth / 2, windowHeight / 2, 790 / 1280 * imageWidth / 2,
+    lensKnob = new Knob(interactiveWidth / 2, interactiveHeight / 2, 790 / 1280 * imageWidth / 2,
     -180, -90, -180, 0, 20, 0, -1);
 
     knobs.push(focusKnob);
@@ -82,7 +92,7 @@ function setup(){
     knobs.push(lensKnob);
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
-    inputButton = new Button(windowWidth * 8.2 / 10, windowHeight * 8 / 10, 40, 40, checkVerticalFilars);
+    inputButton = new Button(interactiveWidth * 8.2 / 10, interactiveHeight * 8 / 10, 40, 40, checkVerticalFilars);
     variation = random(-1.5, 1.5);
 }
 function draw(){
@@ -108,18 +118,18 @@ function staticSetup(){
     text('Input', inputButton.x, measuringKnob.y + measuringKnob.r * 1.4);
 
     if(!vertical)
-        text('Vertical input recorded', windowWidth * 9 / 10, windowHeight * 5.3 / 10);
+        text('Vertical input recorded', interactiveWidth * 9 / 10, interactiveHeight * 5.3 / 10);
 
     textSize(30);
     if(done)
-        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', windowWidth * 8.8 / 10, windowHeight * 3 / 10);
+        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 8.8 / 10, interactiveHeight * 3 / 10);
 
 }
 function lensOuterKnob(){
     push();
     stroke(100);
     strokeWeight(2);
-    translate(windowWidth / 2, windowHeight / 2);
+    translate(interactiveWidth / 2, interactiveHeight / 2);
     rotate(-lensKnob.theta + 180);
 
     let l = 72;
@@ -135,13 +145,13 @@ function lensOuterKnob(){
 function blur(){
     push();
     drawingContext.filter = 'blur(' + str(abs(focusKnob.theta - focus)) / 30 + 'px)';
-    image(bg, (windowWidth - imageWidth) / 2, (windowHeight - imageHeight) / 2, imageWidth, imageHeight);
+    image(bg, (interactiveWidth - imageWidth) / 2, (interactiveHeight - imageHeight) / 2, imageWidth, imageHeight);
     pop();
 }
 function drawFilars(){
 
     push();
-    translate(windowWidth / 2, windowHeight / 2);
+    translate(interactiveWidth / 2, interactiveHeight / 2);
 
     if(!vertical)
         rotate(-lensKnob.theta + 180);
@@ -154,14 +164,14 @@ function drawFilars(){
         (measuringKnob.theta + baseKnob.theta - baseKnob.theta0) * imageWidth * (795 / 1280) / (measuringKnob.upperTheta - measuringKnob.lowerTheta), imageWidth * (795 / 1280) / 2);
 
     strokeWeight(1.4);
-    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 250 / 1280 * imageWidth - windowHeight / 2,
-        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 97 / 1280 * imageWidth, 250 / 1280 * imageWidth - windowHeight / 2);
+    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 250 / 1280 * imageWidth - interactiveHeight / 2,
+        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 97 / 1280 * imageWidth, 250 / 1280 * imageWidth - interactiveHeight / 2);
 
-    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 380 / 1280 * imageWidth -windowHeight / 2,
-        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 160 / 1280 * imageWidth, 380 / 1280 * imageWidth -windowHeight / 2);
+    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 380 / 1280 * imageWidth -interactiveHeight / 2,
+        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 160 / 1280 * imageWidth, 380 / 1280 * imageWidth -interactiveHeight / 2);
 
-    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 510 / 1280 * imageWidth -windowHeight / 2,
-        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 97 / 1280 * imageWidth, 510 / 1280 * imageWidth -windowHeight / 2);
+    line(baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta), 510 / 1280 * imageWidth -interactiveHeight / 2,
+        baseKnob.theta * imageWidth * (795 / 1280) / (baseKnob.upperTheta - baseKnob.lowerTheta) - 97 / 1280 * imageWidth, 510 / 1280 * imageWidth -interactiveHeight / 2);
 
     pop();
 
@@ -174,7 +184,7 @@ function checkVerticalFilars(){
     }
     else {
         textSize(16);
-        text("Please align filars", windowWidth * 9 / 10, windowHeight * 6 / 10);
+        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 6 / 10);
     }
 
 }
@@ -184,7 +194,7 @@ function checkHorizontalFilars(){
         done = true;
     }else {
         textSize(16);
-        text("Please align filars", windowWidth * 9 / 10, windowHeight * 6 / 10);
+        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 6 / 10);
     }
 
 }
