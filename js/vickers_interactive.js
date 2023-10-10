@@ -58,6 +58,9 @@ let imageWidth;
 let interactiveWidth = 0;
 let interactiveHeight = 0;
 
+let videoBack = false;
+let videoForward = false;
+
 let parent = document.getElementById("video_canvas");
 function preload(){
     bg = loadImage('images/sample.png');
@@ -118,11 +121,11 @@ function staticSetup(){
     text('Input', inputButton.x, inputButton.y + inputButton.w * 1.4);
 
     if(!vertical && !done)
-        text('Vertical input recorded', interactiveWidth * 8.8 / 10, interactiveHeight * 1 / 10);
+        text('Vertical input recorded', interactiveWidth * 8.8 / 10, interactiveHeight  / 10);
 
     textSize(30);
     if(done)
-        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 8.8 / 10, interactiveHeight * 1 / 10);
+        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 8.8 / 10, interactiveHeight  / 10);
 
 }
 function lensOuterKnob(){
@@ -213,6 +216,13 @@ function logs(){
         textSize(16);
         text(baseKnob.theta.toFixed(2), 100, 100);
         text((measuringKnob.theta + baseKnob.theta - baseKnob.theta0).toFixed(2), 100, 100);
+    }
+}
+function keyPressed(){
+    if(keyCode === LEFT_ARROW){
+        videoBack = true;
+    }else if(keyCode === RIGHT_ARROW && done){
+        videoForward = true;
     }
 }
 class Knob{
