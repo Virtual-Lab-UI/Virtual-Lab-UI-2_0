@@ -1,6 +1,6 @@
 vickersTimestamps = {};
 
-vickersTimestamps["steel_1018"] = 190.0;
+vickersTimestamps["steel_1018"] = 218.0;
 
 currentState = "video";
 
@@ -11,7 +11,7 @@ function changeCanvasToVideo(){
     //document.getElementById("video_canvas").setAttribute('hidden','false');
     document.getElementById("video_canvas").style.display = 'block';
     document.getElementById("video_box_sim").style.display = 'none';
-    document.getElementById("video_canvas").play();
+    //document.getElementById("video_canvas").play();
     console.log("hiding canvas");
 }
 function changeVideoToCanvas(){
@@ -19,11 +19,10 @@ function changeVideoToCanvas(){
 //   </div>'
     //document.getElementById("video_div").innerHTML = '';
     //document.getElementById("video_canvas").setAttribute('hidden','true');
-    interactiveWidth = document.getElementById("video_canvas").clientWidth;
-    interactiveHeight = document.getElementById("video_canvas").clientHeight;
+    
     document.getElementById("video_canvas").style.display = 'none';
     document.getElementById("video_box_sim").style.display = 'block';
-    console.log("hiding video")
+    console.log(`hiding video w${interactiveWidth} h${interactiveHeight}`)
 }
 
 // function changeVideoToCanvas(){
@@ -55,8 +54,8 @@ let filarBounds = [[-250, -227, 0, 25], [-185, -150, 55, 96]];
 let imageHeight;
 let imageWidth;
 
-let interactiveWidth = 0;
-let interactiveHeight = 0;
+let interactiveWidth = document.getElementById("video_canvas").clientWidth;
+let interactiveHeight = document.getElementById("video_canvas").clientHeight;
 
 let videoBack = false;
 let videoForward = false;
