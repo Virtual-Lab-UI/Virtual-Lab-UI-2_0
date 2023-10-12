@@ -60,6 +60,7 @@ let interactiveHeight = 0;
 
 let videoBack = false;
 let videoForward = false;
+let prevMouse = false;
 
 let parent = document.getElementById("video_canvas");
 function preload(){
@@ -80,9 +81,9 @@ function setup(){
     imageHeight = min(interactiveHeight, bg.height)
     imageWidth = imageHeight * (1280 / 720);
 
-    focusKnob = new Knob(interactiveWidth * 1 / 10, interactiveHeight * 1.5 / 10, interactiveWidth / 20,
+    focusKnob = new Knob(interactiveWidth / 10, interactiveHeight * 1.5 / 10, interactiveWidth / 20,
         -360, 360, 0, 12, 6);
-    baseKnob = new Knob(interactiveWidth * 1 / 10, interactiveHeight * 8.5 / 10, interactiveWidth / 20,
+    baseKnob = new Knob(interactiveWidth / 10, interactiveHeight * 8.5 / 10, interactiveWidth / 20,
         -2 * 360, 2 * 360, random(-1.8 * 360, 0), 12, 6)
     measuringKnob = new Knob(interactiveWidth * 9 / 10, interactiveHeight * 8.5 / 10, interactiveWidth / 20,
         baseKnob.theta0, 4 * 360 + baseKnob.theta0, random(baseKnob.theta0, 1.7 * 360), 12, 6)
@@ -111,6 +112,7 @@ function draw(){
     lensOuterKnob();
     staticSetup();
     logs();
+    prevMouse = mouseIsPressed;
 }
 function staticSetup(){
     textSize(16);
@@ -221,9 +223,14 @@ function logs(){
 function keyPressed(){
     if(keyCode === LEFT_ARROW){
         videoBack = true;
-    }else if(keyCode === RIGHT_ARROW && done){
+    }else if(keyCode === RIGHT_ARROW){
         videoForward = true;
     }
+}
+function mouseWheel(event) {
+    for(let i = 0; i < knobs.length; i++)
+        if((dist(mouseX, mouseY, knobs[i].x, knobs[i].y) < knobs[i].r))
+            knobs[i].display(event.delta / 2);
 }
 class Knob{
     constructor(x, y, r, lowerTheta, upperTheta, theta0, sides, strokeWeight, stroke = -1, fill = 192){
@@ -244,19 +251,27 @@ class Knob{
         this.strokeWeight = strokeWeight;
         this.stroke = stroke;
         this.fill = fill;
+
+        this.stillPressed = false;
     }
 
-    display(){
-        let dtheta = 0;
+    display(dtheta = 0){
+        if(dtheta === 0) {
+            if (!prevMouse  && mouseIsPressed && dist(mouseX, mouseY, this.x, this.y) < this.r)
+                this.stillPressed = true;
 
-        if(mouseIsPressed && dist(mouseX, mouseY, this.x, this.y) < this.r) {
-            this.previousPosition = this.currentPosition;
-            this.currentPosition = createVector(this.x - mouseX, mouseY - this.y);
-            dtheta = this.currentPosition.angleBetween(this.previousPosition);
+            else if (!mouseIsPressed)
+                this.stillPressed = false;
 
-        }else{
-            this.currentPosition = createVector(this.x - mouseX, mouseY - this.y);
-            this.previousPosition = this.currentPosition;
+            if (this.stillPressed) {
+                this.previousPosition = this.currentPosition;
+                this.currentPosition = createVector(this.x - mouseX, mouseY - this.y);
+                dtheta = this.currentPosition.angleBetween(this.previousPosition);
+
+            } else {
+                this.currentPosition = createVector(this.x - mouseX, mouseY - this.y);
+                this.previousPosition = this.currentPosition;
+            }
         }
 
         push();
