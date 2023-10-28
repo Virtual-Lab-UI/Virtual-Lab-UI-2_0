@@ -62,6 +62,8 @@ let videoForward = false;
 let prevMouse = false;
 
 let parent = document.getElementById("video_canvas");
+let data = {};
+let k = 0;
 function preload(){
     bg = loadImage('images/sample.png');
 }
@@ -224,12 +226,25 @@ function keyPressed(){
         videoBack = true;
     }else if(keyCode === RIGHT_ARROW){
         videoForward = true;
+    }else if(keyCode === 68){
+        downloadObjectAsJson(data, "vickers_data");
     }
 }
 function mouseWheel(event) {
     for(let i = 0; i < knobs.length; i++)
-        if((dist(mouseX, mouseY, knobs[i].x, knobs[i].y) < knobs[i].r))
+        if((dist(mouseX, mouseY, knobs[i].x, knobs[i].y) < knobs[i].r)) {
             knobs[i].display(event.delta / 2);
+            data[k] = [performance.now(), "mouseWheel", event.delta];
+            k++;
+        }
+}
+function mousePressed(){
+    data[k] = [performance.now(), "mousePressed"];
+    k++;
+}
+function mouseMoved(){
+    data[k] = [performance.now(), "mouseMoved"];
+    k++;
 }
 class Knob{
     constructor(x, y, r, lowerTheta, upperTheta, theta0, sides, strokeWeight, stroke = -1, fill = 192){
@@ -366,4 +381,13 @@ class Button {
     setCallback(callback) {
         this.callback = callback;
     }
+}
+function downloadObjectAsJson(exportObj, exportName){
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    let downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
 }
