@@ -1,6 +1,6 @@
 vickersTimestamps = {};
 
-vickersTimestamps["steel_1018"] = 218.0;
+vickersTimestamps["test_steel"] = 222.5;
 
 currentState = "video";
 
@@ -245,6 +245,29 @@ function mousePressed(){
 function mouseMoved(){
     data[k] = [performance.now(), "mouseMoved"];
     k++;
+}
+function reset(){
+    data = {};
+    k = 0;
+
+    vertical = true;
+    done = false;
+
+    videoBack = false;
+    videoForward = false;
+    prevMouse = false;
+
+    inputButton.setCallback(checkVerticalFilars);
+
+    focusKnob.theta = 0;
+    baseKnob.theta = random(-1.8 * 360, 0);
+    measuringKnob.theta = random(baseKnob.theta0, 1.7 * 360);
+    lensKnob.theta = -180;
+
+    focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
+    variation = random(-1.5, 1.5);
+
+
 }
 class Knob{
     constructor(x, y, r, lowerTheta, upperTheta, theta0, sides, strokeWeight, stroke = -1, fill = 192){

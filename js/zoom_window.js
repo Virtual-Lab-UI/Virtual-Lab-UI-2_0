@@ -42,7 +42,7 @@ function changeToZoomFrame(){
 
 function reloadSizes(){
     //console.log("start-" + sessionStorage.getItem("s"));
-    if(sessionStorage.getItem("serverSideReload") != "true"){
+    if(sessionStorage.getItem("serverSideReload") !== "true"){
         //location.reload();
         sessionStorage.setItem("serverSideReload", "true");
         reload();
@@ -155,7 +155,7 @@ let processor = {
         var materialType = document.querySelector('#material_type');
 
         //alert(this.video.clientWidth);
-        if(testType.value == '' | materialType.value == ''){
+        if(testType.value === '' || materialType.value === ''){
 
         }else{
             this.zoomCanvasContext.drawImage(this.video, -zoomDisplaceX,-zoomDisplaceY, (scaleFac * this.video.clientWidth), (scaleFac * this.video.clientHeight));
@@ -174,14 +174,14 @@ let processor = {
 
         //console.log(`ttvalue ${testType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
 
-        if(testType.value == "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState == "video"){
+        if(testType.value === "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState === "video"){
             //alert("time has reached");
             this.video.pause();
             changeVideoToCanvas();
             //setup();
             currentState = "interactive"
         }
-        if(currentState == "interactive" && done && videoForward){
+        if(currentState === "interactive" && done && videoForward){
             //draw();
             changeCanvasToVideo();
             
@@ -191,10 +191,9 @@ let processor = {
 
             currentState = "video";
 
-            done = false;
-            videoForward = false;
+            reset();
         }
-        if(currentState == "interactive" && done && videoBack){
+        if(currentState === "interactive" && done && videoBack){
             //draw();
             changeCanvasToVideo();
 
@@ -204,11 +203,8 @@ let processor = {
 
             currentState = "video";
 
-            done = false;
-            videoBack = false;
+            reset();
         }
-
-        return;
     }
 };
 
