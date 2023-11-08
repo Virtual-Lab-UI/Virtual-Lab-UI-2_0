@@ -65,7 +65,7 @@ let parent = document.getElementById("video_canvas");
 let data = {};
 data["time"] = new Date()
 data["time"].setHours(data["time"].getHours() - 8);
-data["time"].setSeconds(data["time"].getSeconds() - vickersTimestamps["test_steel"]);
+data["time"].setSeconds(data["time"].getSeconds() + vickersTimestamps["test_steel"]);
 
 let k = 0;
 function preload(){
