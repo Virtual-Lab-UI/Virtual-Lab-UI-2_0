@@ -172,7 +172,7 @@ let processor = {
         //   }
         //   this.zoomCanvasContext.putImageData(frame, 0, 0);
 
-        //console.log(`ttvalue ${testType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
+        console.log(`ttvalue ${materialType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
 
         if(testType.value === "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState === "video"){
             //alert("time has reached");
@@ -193,7 +193,7 @@ let processor = {
 
             reset();
         }
-        if(currentState === "interactive" && done && videoBack){
+        if(currentState === "interactive" && videoBack){
             //draw();
             changeCanvasToVideo();
 

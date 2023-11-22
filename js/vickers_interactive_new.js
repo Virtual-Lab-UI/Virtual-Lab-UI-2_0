@@ -72,8 +72,7 @@ let k = 0;
 let data = {};
 data["time"] = new Date()
 data["time"].setHours(data["time"].getHours() - 8);
-//data["time"].setSeconds(data["time"].getSeconds() + vickersTimestamps["test_steel"]);
-
+data["time"].setSeconds(data["time"].getSeconds() + vickersTimestamps["steel_1018"]);
 
 function preload(){
     bg = loadImage('images/background_.JPG');
@@ -183,13 +182,10 @@ function staticSetup(){
 
     textSize(30);
     if(done){
-        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 9 / 10, interactiveHeight * 3 / 10);
-        console.log(fill());
-        textAlign(RIGHT);
-        textSize(20);
-        text("Right Arrow Key to continue\n Left Arrow Key to rewatch this section", interactiveWidth * 0.95, interactiveHeight * 4 / 10);
-        textAlign(CENTER);
-        textSize(30);
+        text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 9 / 10, interactiveHeight * 4 / 10);
+        textSize(16);
+        textAlign(LEFT);
+        text("Right Arrow Key to continue\n Left Arrow Key to rewatch this section", interactiveWidth / 10, interactiveHeight * 3.5 / 10);
     }
     pop();
 

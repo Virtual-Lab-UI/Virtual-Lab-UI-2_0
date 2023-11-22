@@ -50,6 +50,7 @@ function dynamicdropdown()
         case "vickers_hardness" :
             document.getElementById("material_type").innerHTML = null;
             document.getElementById("material_type").options[0]=new Option("Test steel","test_steel");
+            document.getElementById("material_type").options[1]=new Option("Steel 1018","steel_1018");
             break;
         case "knoop_hardness" :
             document.getElementById("material_type").innerHTML = null;
