@@ -101,7 +101,7 @@ function setup(){
     knobs.push(lensKnob);
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
-    inputButton = new Button(interactiveWidth * 9 / 10, interactiveHeight * 6.5 / 10, 40, 40, checkVerticalFilars);
+    inputButton = new Button(interactiveWidth * 9 / 10, interactiveHeight * 5.5 / 10, 40, 40, checkVerticalFilars);
     variation = random(-1.5, 1.5);
 }
 function draw(){
@@ -125,7 +125,7 @@ function staticSetup(){
     text('Base', baseKnob.x, baseKnob.y + baseKnob.r * 1.4);
     text('Measuring', measuringKnob.x, measuringKnob.y + measuringKnob.r * 1.4);
 
-    text('Input', inputButton.x, inputButton.y + inputButton.w * 1.4);
+    text('Input', inputButton.x, inputButton.y + inputButton.w * 1.2);
 
     if(!vertical && !done)
         text('Vertical input recorded', interactiveWidth * 8.8 / 10, interactiveHeight  / 10);
@@ -270,7 +270,6 @@ function reset(){
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
     variation = random(-1.5, 1.5);
-
 
 }
 class Knob{

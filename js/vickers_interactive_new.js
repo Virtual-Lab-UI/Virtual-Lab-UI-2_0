@@ -1,6 +1,6 @@
 vickersTimestamps = {};
 
-vickersTimestamps["steel_1018"] = 218.0;
+vickersTimestamps["steel_1018"] = 222.5;
 
 currentState = "video";
 
