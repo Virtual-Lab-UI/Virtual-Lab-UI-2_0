@@ -1,35 +1,19 @@
 vickersTimestamps = {};
-
-vickersTimestamps["steel_1018"] = 222.5;
+vickersTimestamps["test_steel"] = 222.5;
 
 currentState = "video";
 
 function changeCanvasToVideo(){
-//     document.getElementById("video_div").innerHTML = '<video id="video_canvas" class="video-frame" controls="false" poster="standby.png"> \
-//     <source src="standby.mp4" type="video/mp4" id="video_source"> \
-//   </video>';
-    //document.getElementById("video_canvas").setAttribute('hidden','false');
     document.getElementById("video_canvas").style.display = 'block';
     document.getElementById("video_box_sim").style.display = 'none';
-    //document.getElementById("video_canvas").play();
     console.log("hiding canvas");
 }
 function changeVideoToCanvas(){
-//     document.getElementById("video_div").innerHTML = '<div id="video_box_sim"  class="video-frame-sim"> \
-//   </div>'
-    //document.getElementById("video_div").innerHTML = '';
-    //document.getElementById("video_canvas").setAttribute('hidden','true');
-    
     document.getElementById("video_canvas").style.display = 'none';
     document.getElementById("video_box_sim").style.display = 'block';
     console.log(`hiding video w${interactiveWidth} h${interactiveHeight}`)
 }
 
-// function changeVideoToCanvas(){
-//     document.getElementById("video_div").innerHTML = '<div id="video_box_sim"  class="video-frame-sim"> \
-//     canvas id="video_canvas_sim" class="video-frame-sim"></canvas> \
-//   </div>'
-// }
 changeCanvasToVideo();
 
 //GIO CODE
@@ -66,7 +50,7 @@ let focusRadius = 70;
 let measuringRadius = 50;
 let baseRadius = 35;
 let bg;
-let sample;
+let sample
 
 let k = 0;
 let data = {};
@@ -185,7 +169,7 @@ function staticSetup(){
         text(str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 9 / 10, interactiveHeight * 4 / 10);
         textSize(16);
         textAlign(LEFT);
-        text("Right Arrow Key to continue\n Left Arrow Key to rewatch this section", interactiveWidth / 10, interactiveHeight * 3.5 / 10);
+        text("Right Arrow Key to continue\nLeft Arrow Key to rewatch this section", interactiveWidth * 0.5 / 10, interactiveHeight * 3.5 / 10);
     }
     pop();
 
@@ -528,10 +512,7 @@ function mouseMoved(){
     data[k] = [performance.now(), "mouseMoved"];
     k++;
 }
-function reset(){
-    data = {};
-    k = 0;
-
+function resetVickers(){
     vertical = true;
     done = false;
 

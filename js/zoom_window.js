@@ -1,14 +1,19 @@
-var zoomDisplaceX;
-var zoomDisplaceY;
+let zoomDisplaceX;
+let zoomDisplaceY;
+
+let zoomCanvas;
+let zoomBox;
+
+let currentState = "video";
 
 const scaleFac = 3;
 
-var zoomCanvasInitial = document.getElementById("zoom_canvas");
-var zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
+let zoomCanvasInitial = document.getElementById("zoom_canvas");
+let zoomCanvasContextInitial = zoomCanvasInitial.getContext("2d");
 
 timeThreshold = 1;
 
-const labLogo = new Image(); // Create new img element
+const labLogo = new Image();
 labLogo.addEventListener(
     "load",
     () => {
@@ -27,19 +32,16 @@ function changeToDataPanel(){
     document.getElementById("icon_tab").setAttribute('aria-selected','false');
     document.getElementById("data_panel_tab").setAttribute('aria-selected','true');
 }
-
 function changeToIcon(){
     document.getElementById("zoom_tab").setAttribute('aria-selected','false');
     document.getElementById("icon_tab").setAttribute('aria-selected','true');
     document.getElementById("data_panel_tab").setAttribute('aria-selected','false');
 }
-
 function changeToZoomFrame(){
     document.getElementById("zoom_tab").setAttribute('aria-selected','true');
     document.getElementById("icon_tab").setAttribute('aria-selected','false');
     document.getElementById("data_panel_tab").setAttribute('aria-selected','false');
 }
-
 function reloadSizes(){
     //console.log("start-" + sessionStorage.getItem("s"));
     if(sessionStorage.getItem("serverSideReload") !== "true"){
@@ -48,14 +50,14 @@ function reloadSizes(){
         reload();
         //sessionStorage.setItem("serverSideReload", "false");
     }else{
-        tabWindow = document.getElementById("tab_window");
-        tabDiv = document.getElementById("tab_div");
+        let tabWindow = document.getElementById("tab_window");
+        let tabDiv = document.getElementById("tab_div");
 
 
         console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
         tabWindow.style.height = tabDiv.clientHeight - 22;
         console.log(`TWB:${document.getElementById("tab_window_body").clientHeight} TW:${tabWindow.clientHeight} C:${document.getElementById("zoom_canvas").clientHeight} CB:${document.getElementById("zoom_box").clientHeight}`);
-        
+
 
         zoomCanvas = document.getElementById("zoom_canvas");
         zoomBox = document.getElementById("zoom_box");
@@ -65,15 +67,15 @@ function reloadSizes(){
         if(sessionStorage.getItem("storage_testType") != null){
             const $select = document.querySelector('#test_type');
             $select.value = sessionStorage.getItem("storage_testType");
-            dynamicdropdown();
+            dynamicDropDown();
         }
         if(sessionStorage.getItem("storage_materialType") != null){
             const $select = document.querySelector('#material_type');
             $select.value = sessionStorage.getItem("storage_materialType");
-            
+
         }
         changeVideo();
-        
+
 
         zoomCanvas.width = zoomBox.clientWidth;
         zoomCanvas.height = zoomBox.clientHeight;
@@ -85,10 +87,9 @@ function reloadSizes(){
     //sessionStorage.setItem("serverSideReload", "false");
     //console.log("nd-" + sessionStorage.getItem("serverSideReload"));
 }
-
 function reload(){
-    if(sessionStorage.getItem("serverSideReload") == "true"){
-        console.log("relaod");
+    if(sessionStorage.getItem("serverSideReload") === "true"){
+        console.log("reload");
         location.reload();
     }
 }
@@ -99,17 +100,17 @@ document.getElementById('video_canvas').onmousemove = function(e) {
     this.videoCanvas = document.getElementById("video_canvas");
     //scale = this.videoCanvas.clientWidth/this.zoomCanvas.clientWidth;
 
-    var rect = e.target.getBoundingClientRect();
-    var x = e.clientX - rect.left; //x position within the element.
-    var y = e.clientY - rect.top;  //y position within the element.
+    let rect = e.target.getBoundingClientRect();
+    let x = e.clientX - rect.left; //x position within the element.
+    let y = e.clientY - rect.top;  //y position within the element.
 
     zoomDisplaceX = scaleFac*x - (this.zoomCanvas.clientWidth)/2;
     zoomDisplaceY = scaleFac*y - (this.zoomCanvas.clientHeight)/2;
 
     //console.log("Lef: " + x + "; Top: " + y + ";" + "X: " + zoomDisplaceX + "; Y: " + zoomDisplaceY + ";");
     
-    var clientXCap = this.videoCanvas.clientWidth * scaleFac - (this.zoomCanvas.clientWidth);
-    var clientYCap = this.videoCanvas.clientHeight * scaleFac - (this.zoomCanvas.clientHeight);
+    let clientXCap = this.videoCanvas.clientWidth * scaleFac - (this.zoomCanvas.clientWidth);
+    let clientYCap = this.videoCanvas.clientHeight * scaleFac - (this.zoomCanvas.clientHeight);
 
     if(zoomDisplaceX < 0){
         zoomDisplaceX = 0;
@@ -132,7 +133,7 @@ let processor = {
             self.timerCallback();
         }, 0);
     },
-  
+
     doLoad: function() {
         this.video = document.getElementById("video_canvas");
         zoomBox = document.getElementById("zoom_box");
@@ -151,63 +152,34 @@ let processor = {
   
     computeFrame: function() {
 
-        var testType = document.querySelector('#test_type');
-        var materialType = document.querySelector('#material_type');
+        let testType = document.querySelector('#test_type');
+        let materialType = document.querySelector('#material_type');
 
-        //alert(this.video.clientWidth);
-        if(testType.value === '' || materialType.value === ''){
-
-        }else{
+        if(!(testType.value === '' || materialType.value === '')){
             this.zoomCanvasContext.drawImage(this.video, -zoomDisplaceX,-zoomDisplaceY, (scaleFac * this.video.clientWidth), (scaleFac * this.video.clientHeight));
-        }   
-        //   let frame = this.zoomCanvasContext.getImageData(0, 0, this.width, this.height);
-        //       let l = frame.data.length / 4;
-    
-        //   for (let i = 0; i < l; i++) {
-        //     let r = frame.data[i * 4 + 0];
-        //     let g = frame.data[i * 4 + 1];
-        //     let b = frame.data[i * 4 + 2];
-        //     if (g > 100 && r > 100 && b < 43)
-        //       frame.data[i * 4 + 3] = 0;
-        //   }
-        //   this.zoomCanvasContext.putImageData(frame, 0, 0);
-
-        console.log(`ttvalue ${materialType.value} currentTime ${this.video.currentTime} stopTime ${vickersTimestamps[materialType.value]}`)
+        }
 
         if(testType.value === "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState === "video"){
-            //alert("time has reached");
             this.video.pause();
             changeVideoToCanvas();
-            //setup();
             currentState = "interactive"
         }
         if(currentState === "interactive" && done && videoForward){
-            //draw();
             changeCanvasToVideo();
-            
             this.video.currentTime = vickersTimestamps[materialType.value] + timeThreshold;
-
             this.video.play();
-
             currentState = "video";
-
-            reset();
+            resetVickers();
         }
         if(currentState === "interactive" && videoBack){
-            //draw();
             changeCanvasToVideo();
-
             this.video.currentTime = vickersTimestamps[materialType.value] - 10;
-
             this.video.play();
-
             currentState = "video";
-
-            reset();
+            resetVickers();
         }
     }
 };
-
 document.addEventListener("DOMContentLoaded", () => {
   processor.doLoad();
 });

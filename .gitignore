@@ -1,3 +1,4 @@
 *.mp4
 !standby.mp4
 worklog.md
+.idea/
