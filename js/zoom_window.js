@@ -162,7 +162,8 @@ let processor = {
         if(testType.value === "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState === "video"){
             this.video.pause();
             changeVideoToCanvas();
-            currentState = "interactive"
+            currentState = "interactive";
+            data["time"].setSeconds(data["time"].getSeconds());
         }
         if(currentState === "interactive" && done && videoForward){
             changeCanvasToVideo();

@@ -45,7 +45,7 @@ let prevMouse = false;
 
 let matchHeight;
 
-let lensRadius = 150;
+let lensRadius = 135;
 let focusRadius = 70;
 let measuringRadius = 50;
 let baseRadius = 35;
@@ -56,7 +56,7 @@ let k = 0;
 let data = {};
 data["time"] = new Date()
 data["time"].setHours(data["time"].getHours() - 8);
-data["time"].setSeconds(data["time"].getSeconds() + vickersTimestamps["steel_1018"]);
+data["time"].setSeconds(data["time"].getSeconds());
 
 function preload(){
     bg = loadImage('images/background_.JPG');
@@ -76,23 +76,23 @@ function windowResized(){
     }
 
     focusKnob.x = interactiveWidth * 9 / 10;
-    focusKnob.y = interactiveHeight * 8 / 10;
+    focusKnob.y = matchHeight ? 0.71 * bgHeight : 0.71 * bgHeight - (bgHeight - interactiveHeight) / 2;
     focusKnob.r = focusRadius;
 
     baseKnob.x = interactiveWidth * 1.5 / 10;
-    baseKnob.y = interactiveHeight * 1.25 / 10;
+    baseKnob.y = matchHeight ? 0.185 * bgHeight : 0.185 * bgHeight - (bgHeight - interactiveHeight) / 2;
     baseKnob.r = baseRadius;
 
     measuringKnob.x = interactiveWidth * 9 / 10;
-    measuringKnob.y = interactiveHeight * 1.25 / 10;
+    measuringKnob.y = matchHeight ? 0.184 * bgHeight : 0.184 * bgHeight - (bgHeight - interactiveHeight) / 2;
     measuringKnob.r = measuringRadius;
 
-    lensKnob.x = interactiveWidth / 2.1;
+    lensKnob.x = interactiveWidth / 2.25;
     lensKnob.y = matchHeight ? 0.65 * bgHeight : 0.65 * bgHeight - (bgHeight - interactiveHeight) / 2;
     lensKnob.r = lensRadius;
 
     inputButton.x = interactiveWidth * 7 / 10;
-    inputButton.y = interactiveHeight * 1.25 / 10;
+    inputButton.y = matchHeight ? 0.184 * bgHeight : 0.184 * bgHeight - (bgHeight - interactiveHeight) / 2;
 
 }
 function setup(){
@@ -115,13 +115,13 @@ function setup(){
         bgHeight = bgWidth * (2 / 3);
     }
 
-    focusKnob = new Knob(interactiveWidth * 9 / 10, interactiveHeight * 8 / 10, focusRadius,
+    focusKnob = new Knob(interactiveWidth * 9 / 10, matchHeight ? 0.71 * bgHeight : 0.71 * bgHeight - (bgHeight - interactiveHeight) / 2, focusRadius,
         -360, 360, 0, 0, focusKnobShape);
-    baseKnob = new Knob(interactiveWidth * 1.5 / 10, interactiveHeight * 1.25 / 10, baseRadius,
+    baseKnob = new Knob(interactiveWidth * 1.5 / 10, matchHeight ? 0.185 * bgHeight : 0.185 * bgHeight - (bgHeight - interactiveHeight) / 2, baseRadius,
         -2 * 360, 2 * 360, random(-1.8 * 360, 0), 12, baseKnobShape)
-    measuringKnob = new Knob(interactiveWidth * 9 / 10, interactiveHeight * 1.25 / 10, measuringRadius,
+    measuringKnob = new Knob(interactiveWidth * 9 / 10, matchHeight ? 0.184 * bgHeight : 0.184 * bgHeight - (bgHeight - interactiveHeight) / 2, measuringRadius,
         baseKnob.theta0, 4 * 360 + baseKnob.theta0, random(baseKnob.theta0, 1.7 * 360), 12, measuringKnobShape);
-    lensKnob = new Knob(interactiveWidth / 2.1, matchHeight ? 0.65 * bgHeight : 0.65 * bgHeight - (bgHeight - interactiveHeight) / 2, lensRadius,
+    lensKnob = new Knob(interactiveWidth / 2.25, matchHeight ? 0.65 * bgHeight : 0.65 * bgHeight - (bgHeight - interactiveHeight) / 2, lensRadius,
     -180, -90, -180, 0, lensKnobShape, 7, 0);
 
     knobs.push(focusKnob);
@@ -130,7 +130,7 @@ function setup(){
     knobs.push(lensKnob);
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
-    inputButton = new Button(interactiveWidth * 7 / 10, interactiveHeight * 1.25 / 10, 25, 25, checkVerticalFilars);
+    inputButton = new Button(interactiveWidth * 7 / 10, matchHeight ? 0.184 * bgHeight : 0.184 * bgHeight - (bgHeight - interactiveHeight) / 2, 25, 25, checkVerticalFilars);
     variation = random(-1.5, 1.5);
 }
 function draw(){
@@ -149,7 +149,39 @@ function draw(){
     logs();
     prevMouse = mouseIsPressed;
 
+    displayArrows();
 
+}
+
+function displayArrows(){
+    displayArrow(baseKnob, createVector(matchHeight ? 0.4 * bgWidth - (bgWidth - interactiveWidth) / 2 : 0.4 * bgWidth, baseKnob.y), color(0));
+    displayArrow(focusKnob, createVector(matchHeight ? 0.61 * bgWidth - (bgWidth - interactiveWidth) / 2 : 0.61 * bgWidth, focusKnob.y), color(200));
+    displayArrow(inputButton, createVector(matchHeight ? 0.61 * bgWidth - (bgWidth - interactiveWidth) / 2 : 0.61 * bgWidth, inputButton.y), color(0));
+}
+function displayArrow(element, end, color){
+
+    push();
+    strokeWeight(2);
+    stroke(color);
+
+    let dR = end.copy();
+    dR.x -= element.x;
+    dR.y -= element.y;
+
+    line(element.x + (dR.x > 0 ? element.r + 15 : -element.r - 15), element.y, end.x + (dR.x > 0 ? -8 : 8), end.y);
+    translate(end.x + (dR.x > 0 ? -8 : 8), end.y);
+
+    rotate(dR.heading());
+
+    beginShape();
+    noFill();
+
+    vertex(-6, -5);
+    vertex(0, 0);
+    vertex(-6, 5);
+
+    endShape();
+    pop();
 }
 function staticSetup(){
     push();
@@ -343,6 +375,7 @@ class Button {
         this.y = y;
         this.w = w;
         this.h = h
+        this.r = w / 2;
         this.callback = callback;
     }
 
