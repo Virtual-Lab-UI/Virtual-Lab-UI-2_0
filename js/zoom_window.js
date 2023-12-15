@@ -163,7 +163,8 @@ let processor = {
             this.video.pause();
             changeVideoToCanvas();
             currentState = "interactive";
-            data["time"].setSeconds(data["time"].getSeconds());
+            data["time"] = new Date()
+            data["time"].setHours(data["time"].getHours() - 8);
         }
         if(currentState === "interactive" && done && videoForward){
             changeCanvasToVideo();

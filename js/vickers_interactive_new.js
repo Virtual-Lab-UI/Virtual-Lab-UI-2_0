@@ -54,9 +54,6 @@ let sample
 
 let k = 0;
 let data = {};
-data["time"] = new Date()
-data["time"].setHours(data["time"].getHours() - 8);
-data["time"].setSeconds(data["time"].getSeconds());
 
 function preload(){
     bg = loadImage('images/background_.jpg');
