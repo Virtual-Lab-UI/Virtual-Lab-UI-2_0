@@ -59,7 +59,7 @@ data["time"].setHours(data["time"].getHours() - 8);
 data["time"].setSeconds(data["time"].getSeconds());
 
 function preload(){
-    bg = loadImage('images/background_.JPG');
+    bg = loadImage('images/background_.jpg');
     sample = loadImage('images/sample_r.png');
 }
 function windowResized(){
