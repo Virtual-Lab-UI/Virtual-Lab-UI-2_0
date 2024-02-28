@@ -31,7 +31,7 @@ let inputButton;
 let vertical = true;
 let done = false;
 
-let filarBounds = [[-315, -285, -40, -8,], [-210, -175, 71, 105]];
+let filarBounds = [[-340, -255, -70, 25], [-235, -140, 35, 135]];
 
 let bgHeight;
 let bgWidth;
@@ -147,7 +147,6 @@ function draw(){
     prevMouse = mouseIsPressed;
 
     displayArrows();
-
 }
 
 function displayArrows(){
@@ -180,6 +179,7 @@ function displayArrow(element, end, color){
     endShape();
     pop();
 }
+
 function staticSetup(){
     push();
     textSize(16);
@@ -200,6 +200,10 @@ function staticSetup(){
         textAlign(LEFT);
         text("Right Arrow Key to continue\nLeft Arrow Key to rewatch this section", interactiveWidth * 0.5 / 10, interactiveHeight * 3.5 / 10);
     }
+
+    textSize(12);
+    textAlign(LEFT);
+    text('*you can "scroll" with your touchpad to rotate the knobs', 30, interactiveHeight - 30);
     pop();
 
 }
@@ -251,7 +255,7 @@ function checkVerticalFilars(){
 
 }
 function checkHorizontalFilars(){
-    if(baseKnob.theta > filarBounds[1][0] && baseKnob.theta < filarBounds[1][1] && measuringKnob.theta + baseKnob.theta - baseKnob.theta0 > filarBounds[1][2] && measuringKnob.theta + baseKnob.theta - baseKnob.theta0 < filarBounds[1][3] && lensKnob.theta > -95) {
+    if(baseKnob.theta > filarBounds[1][0] && baseKnob.theta < filarBounds[1][1] && measuringKnob.theta + baseKnob.theta - baseKnob.theta0 > filarBounds[1][2] && measuringKnob.theta + baseKnob.theta - baseKnob.theta0 < filarBounds[1][3] && lensKnob.theta > -100) {
         inputButton.setCallback(noCallback);
         done = true;
     }else {
@@ -403,7 +407,6 @@ class Button {
         } else {
             push();
             noStroke();
-            //stroke(192);
             rect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
             fill(223);
             rect(this.x - this.w / 2 - 2, this.y - this.h / 2, 2.2, this.h);
@@ -420,7 +423,6 @@ class Button {
             fill(60);
             rect(this.x + this.w / 2 + 2, this.y - this.h / 2 - 2, 2, this.h + 6);
             rect(this.x - this.w / 2 - 4, this.y + this.h / 2 + 2, this.w + 7, 2);
-            //console.log(str(this.x) + ' ' + str(this.w) + ' ' + str(this.y) + ' ' + str(this.h));
             pop();
         }
     }
@@ -559,5 +561,4 @@ function resetVickers(){
 
     focus = random(focusKnob.lowerTheta, focusKnob.upperTheta);
     variation = random(-1.5, 1.5);
-
 }
