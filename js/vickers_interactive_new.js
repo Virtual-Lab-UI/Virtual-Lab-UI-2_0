@@ -1,5 +1,5 @@
 vickersTimestamps = {};
-vickersTimestamps["test_steel"] = 222.5;
+vickersTimestamps["o1_tool_steel"] = 222.5;
 
 currentState = "video";
 
@@ -250,7 +250,7 @@ function checkVerticalFilars(){
     }
     else {
         textSize(16);
-        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 6 / 10);
+        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 5 / 10);
     }
 
 }
@@ -260,7 +260,7 @@ function checkHorizontalFilars(){
         done = true;
     }else {
         textSize(16);
-        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 6 / 10);
+        text("Please align filars", interactiveWidth * 9 / 10, interactiveHeight * 5 / 10);
     }
 
 }
