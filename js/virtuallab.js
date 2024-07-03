@@ -48,7 +48,7 @@ function dynamicDropDown()
 
         case "knoop_hardness" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("N/A","");
+            document.getElementById("material_type").options[0]=new Option("Material","material");
             break;
 
         case "charpy" :

@@ -144,8 +144,6 @@ let processor = {
         this.zoomCanvasContext = this.zoomCanvas.getContext("2d");
         let self = this;
         this.video.addEventListener("play", function() {
-            // self.width = self.video.videoWidth / 2;
-            // self.height = self.video.videoHeight / 2;
             self.timerCallback();
         }, false);
     },
@@ -159,27 +157,8 @@ let processor = {
             this.zoomCanvasContext.drawImage(this.video, -zoomDisplaceX,-zoomDisplaceY, (scaleFac * this.video.clientWidth), (scaleFac * this.video.clientHeight));
         }
 
-        if(testType.value === "vickers_hardness" && (this.video.currentTime > vickersTimestamps[materialType.value]) && (this.video.currentTime < vickersTimestamps[materialType.value] + timeThreshold) && currentState === "video"){
-            this.video.pause();
-            changeVideoToCanvas();
-            currentState = "interactive";
-            data["time"] = new Date()
-            data["time"].setHours(data["time"].getHours() - 8);
-        }
-        if(currentState === "interactive" && done && videoForward){
-            changeCanvasToVideo();
-            this.video.currentTime = vickersTimestamps[materialType.value] + timeThreshold;
-            this.video.play();
-            currentState = "video";
-            resetVickers();
-        }
-        if(currentState === "interactive" && videoBack){
-            changeCanvasToVideo();
-            this.video.currentTime = vickersTimestamps[materialType.value] - 10;
-            this.video.play();
-            currentState = "video";
-            resetVickers();
-        }
+        handleSketch(this.video);
+
     }
 };
 document.addEventListener("DOMContentLoaded", () => {
