@@ -127,8 +127,6 @@ function sketch(p) {
         prevMouse = p.mouseIsPressed;
 
         p.displayArrows();
-
-        console.log(baseKnob.theta + ' ' + (measuringKnob.theta + baseKnob.theta - baseKnob.theta0))
     }
 
     p.displayArrows = function() {
