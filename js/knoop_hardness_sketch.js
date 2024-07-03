@@ -38,7 +38,7 @@ function sketch(p) {
     }
 
     p.windowResized = function() {
-        resizeCanvas(interactiveWidth, interactiveHeight);
+        p.resizeCanvas(interactiveWidth, interactiveHeight);
 
         if (interactiveHeight / interactiveWidth > 2 / 3) {
             matchHeight = true;
