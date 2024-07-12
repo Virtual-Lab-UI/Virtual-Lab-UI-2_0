@@ -48,7 +48,7 @@ function dynamicDropDown()
 
         case "knoop_hardness" :
             document.getElementById("material_type").innerHTML = null;
-            document.getElementById("material_type").options[0]=new Option("Material","material");
+            document.getElementById("material_type").options[0]=new Option("O1 Tool Steel","o1_tool_steel");
             break;
 
         case "charpy" :
@@ -59,6 +59,11 @@ function dynamicDropDown()
             document.getElementById("material_type").options[3]=new Option("Stainless 316L","stainless_316l");
             document.getElementById("material_type").options[4]=new Option("Steel 1045","steel_1045");
             document.getElementById("material_type").options[5]=new Option("Steel 4140","steel_4140");
+            break;
+
+        case "oscilloscope" :
+            document.getElementById("material_type").innerHTML = null;
+            document.getElementById("material_type").options[0]=new Option("PWM Experiment","pwm_experiment");
             break;
         }
 

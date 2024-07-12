@@ -107,7 +107,7 @@ function sketch(p) {
 
         focus = p.random(focusKnob.lowerTheta, focusKnob.upperTheta);
         inputButton = new Button(interactiveWidth * 7 / 10, matchHeight ? 0.184 * bgHeight : 0.184 * bgHeight - (bgHeight - interactiveHeight) / 2, 25, 25, p.checkVerticalFilars);
-        variation = p.random(-1.5, 1.5);
+        variation = p.random(-0.7, 0.7);
     }
 
     p.draw = function() {
@@ -176,7 +176,7 @@ function sketch(p) {
 
         p.textSize(30);
         if (p.done) {
-            p.text(p.str((206.9 + variation).toFixed(1)) + '  HV0.5', interactiveWidth * 9 / 10, interactiveHeight * 4 / 10);
+            p.text(p.str((207.8 + variation).toFixed(1)) + '  HK1', interactiveWidth * 9 / 10, interactiveHeight * 4 / 10);
             p.textSize(16);
             p.textAlign(p.LEFT);
             p.text("Right Arrow Key to continue\nLeft Arrow Key to rewatch this section", interactiveWidth * 0.5 / 10, interactiveHeight * 3.5 / 10);
