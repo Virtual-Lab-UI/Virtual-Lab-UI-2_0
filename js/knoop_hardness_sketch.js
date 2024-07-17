@@ -14,7 +14,7 @@ function sketch(p) {
     let vertical = true;
     p.done = false;
 
-    let filarBounds = [-520, -350, 436, 600];
+    let filarBounds = [-560, -380, 370, 660];
 
     let bgHeight;
     let bgWidth;
@@ -127,6 +127,9 @@ function sketch(p) {
         prevMouse = p.mouseIsPressed;
 
         p.displayArrows();
+
+        console.log(baseKnob.theta)
+        console.log(measuringKnob.theta + baseKnob.theta - baseKnob.theta0)
     }
 
     p.displayArrows = function() {
