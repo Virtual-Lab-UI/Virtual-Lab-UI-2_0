@@ -917,7 +917,7 @@ table>tbody>tr>* {
 .credits {
     position: fixed;
     bottom: 3;
-    left: 3;
+    right: 15;
     background: #c0c0c0;
     z-index: 5;
     font-size: 15px
